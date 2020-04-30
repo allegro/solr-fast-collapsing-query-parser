@@ -36,7 +36,7 @@ limited set of documents, already filtered by previous filters.
  `FastCollapsingQueryFilter` is really a post filter.  This parser collapses the result set to a single 
 document per group before it forwards the result set to the rest of the search components.
 
-####The FastCollapsingQueryParser accepts the following local parameters:
+#### The FastCollapsingQueryParser accepts the following local parameters:
 
 * field
 
@@ -58,7 +58,7 @@ For very high cost filters, if cache=false and cost>=100 and the query implement
 a Collector will be requested from that query and used to filter documents after they have matched the main 
 query and all other filter queries. There can be multiple post filters; they are also ordered by cost.
 
-####The FastCollapsingQueryParser accepts the following request parameters:
+#### The FastCollapsingQueryParser accepts the following request parameters:
 
 * sort
 
