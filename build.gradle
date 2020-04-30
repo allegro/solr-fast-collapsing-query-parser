@@ -1,0 +1,52 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'java'
+    id 'pl.allegro.tech.build.axion-release' version '1.10.2'
+}
+
+scmVersion {
+    tag {
+        prefix = project.rootProject.name
+    }
+    versionCreator 'versionWithBranch'
+}
+
+sourceCompatibility = 1.8
+
+project.group = 'pl.allegro.search.solr'
+project.version = scmVersion.version
+
+repositories {
+    mavenCentral()
+    maven { url "https://maven.restlet.com" }
+}
+
+dependencies {
+    compile group: 'org.apache.solr', name: 'solr-core', version: '8.4.0'
+
+    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.1-groovy-2.4'
+    testCompile group: 'org.apache.solr', name: 'solr-test-framework', version: "8.4.0"
+    testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.3'
+    testCompile group: 'cglib', name: 'cglib-nodep', version: '3.2.5'
+    testCompile group: 'org.apache.solr', name: 'solr-test-framework', version: "8.4.0"
+    testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: '1.7.1'
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+    systemProperty "test.solr.allowed.securerandom", "NativePRNG"
+}
+
+wrapper {
+    gradleVersion = '6.3'
+}
