@@ -1,5 +1,6 @@
 package org.apache.solr.search;
 
+import org.apache.lucene.search.TotalHits;
 import org.apache.solr.handler.component.ResponseBuilder;
 import org.apache.solr.handler.component.SearchComponent;
 import org.apache.solr.response.BasicResultContext;
@@ -20,7 +21,7 @@ public class FastCollapsingNumFoundSearchComponent extends SearchComponent {
             BasicResultContext response = (BasicResultContext) rb.rsp.getResponse();
             DocSlice docList = (DocSlice) response.getDocList();
             Integer hits = (Integer) rb.req.getContext().get(COLLAPSING_REQUEST_TOTAL_HITS);
-            DocSlice modifiedDocList = new DocSlice(docList.offset, docList.len, docList.docs, docList.scores, hits, docList.maxScore);
+            DocSlice modifiedDocList = new DocSlice(docList.offset, docList.len, docList.docs, docList.scores, hits, docList.maxScore, TotalHits.Relation.EQUAL_TO);
             rb.rsp.getValues().remove("response");
             rb.rsp.addResponse(new BasicResultContext(modifiedDocList, response.getReturnFields(), response.getSearcher(), response.getQuery(), response.getRequest()));
             logResponse(rb, hits);
