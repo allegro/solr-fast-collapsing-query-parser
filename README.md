@@ -4,13 +4,13 @@ As the built-in Collapsing Query Parser our collapsing query parser groups docum
 your parameters.
 
 ## Requirements
- * Solr version > 7.2 (tested with 7.2.1 - 8.4.0)
+ * Solr version > 8.6+ (tested with 8.6.3)
  * Solr running in standalone mode 
  * Solr Cloud is also supported only for one shard collections to have consistent grouping.  
 
 ## Motivation
 The initial motivation for creating this plugin was to use more effective field collapsing then the one available in the Solr 
-codebase https://lucene.apache.org/solr/guide/8_4/collapse-and-expand-results.html. We tried to optimize the requests’ 
+codebase https://lucene.apache.org/solr/guide/8_6/collapse-and-expand-results.html. We tried to optimize the requests’ 
 performance by using a priority queue during filter query phase.  
 
 ## Limitations
@@ -71,7 +71,7 @@ Sets the initial size of the collapse data structures
 
 ### Exceptions in FastCollapsingQueryFilter
 FastCollapsingQueryFilter is using slower algorithms for requests:
- * with cursorMark request parameter, that allows pagination using cursors https://lucene.apache.org/solr/guide/8_4/pagination-of-results.html
+ * with cursorMark request parameter, that allows pagination using cursors https://lucene.apache.org/solr/guide/8_6/pagination-of-results.html
  * with request parameter rows=0, that allow only to count items returned by query
  * without sort request parameter. 
   
